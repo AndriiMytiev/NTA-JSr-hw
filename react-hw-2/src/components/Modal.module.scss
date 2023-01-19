@@ -1,0 +1,65 @@
+.modal {
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(128, 128, 128, 0.7);
+
+  &__container {
+    width: 600px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    border-radius: 10px;
+    background-color: #fff;
+    position: relative;
+    padding: 20px;
+
+    h2 {
+      font-weight: normal;
+
+      span {
+        font-weight: bold;
+      }
+    }
+
+    img {
+      width: 250px;
+      margin: 20px auto;
+    }
+
+    .buttons__box {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+
+      .addToCard {
+        width: fit-content;
+        padding: 7px 15px;
+        background-color: black;
+        color: white;
+        border-radius: 5px;
+        text-transform: uppercase;
+        align-self: center;
+        cursor: pointer;
+        margin-right: 20px;
+      }
+
+      .cancel {
+        width: fit-content;
+        padding: 7px 15px;
+        background-color: white;
+        border-radius: 5px;
+        text-transform: uppercase;
+        align-self: center;
+        cursor: pointer;
+      }
+    }
+  }
+}
