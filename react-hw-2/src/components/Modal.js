@@ -12,7 +12,7 @@ const Modal = ({closeModal, id, name, color, image, price, addToCart}) => {
                     <button className={styles.addToCard} onClick={() => {
                         closeModal();
                         addToCart(id);
-                    }}>Add to card
+                    }}>Add to cart
                     </button>
 
                     <button className={styles.cancel} onClick={closeModal}>Cancel</button>
