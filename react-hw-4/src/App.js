@@ -1,17 +1,15 @@
 import './App.css';
-import Header from "./components/Header/Header";
+import {useEffect} from "react";
 import {Route, Switch, Redirect} from "react-router-dom";
-import data from './constants/products.json'
+import {useDispatch, useSelector} from "react-redux";
+import Header from "./components/Header/Header";
 import ProductsPage from "./pages/ProductsPage";
 import FavoritesPage from "./pages/FavoritesPage";
 import CartPage from "./pages/CartPage";
-import {Provider, useDispatch, useSelector} from "react-redux";
+import data from './constants/products.json'
 import {fetchProdData} from './store/ProductsSlice'
 import {fetchFavData} from './store/FavoritesSlice'
 import {fetchCartData} from './store/CartSlice'
-
-import {useEffect} from "react";
-import {store} from "./store/redux";
 
 function App() {
     const favorites = useSelector(state => state.favorites.favorites);
@@ -37,28 +35,26 @@ function App() {
     }, [favorites, inCart])
 
     return (
-        <Provider store={store}>
-            <div className="App">
-                <Header/>
-                <Switch>
-                    <Route path='/' exact>
-                        <ProductsPage/>
-                    </Route>
+        <div className="App">
+            <Header/>
+            <Switch>
+                <Route path='/' exact>
+                    <ProductsPage/>
+                </Route>
 
-                    <Route path='/favorites'>
-                        <FavoritesPage/>
-                    </Route>
+                <Route path='/favorites'>
+                    <FavoritesPage/>
+                </Route>
 
-                    <Route path='/cart'>
-                        <CartPage/>
-                    </Route>
+                <Route path='/cart'>
+                    <CartPage/>
+                </Route>
 
-                    <Route path='*'>
-                        <Redirect to='/'/>
-                    </Route>
-                </Switch>
-            </div>
-        </Provider>
+                <Route path='*'>
+                    <Redirect to='/'/>
+                </Route>
+            </Switch>
+        </div>
     );
 }
 

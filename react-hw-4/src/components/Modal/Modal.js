@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from "./Modal.module.scss";
-import {setShowModal} from "../../store/ModalSlice";
+// import {setShowModal} from "../../store/ModalSlice";
 import {useDispatch} from "react-redux";
 import {addToCart, removeFromCart} from "../../store/CartSlice";
 
@@ -25,7 +25,11 @@ const Modal = ({product, closeModal, addModal}) => {
                         addModal ? dispatch(addToCart(product)) : dispatch(removeFromCart(product.id));
                     }}>{addModal ? 'Add to cart' : 'Remove'}
                     </button>
-                    <button className={styles.cancel} onClick={() => dispatch(setShowModal(false))}>Cancel</button>
+                    <button className={styles.cancel} onClick={() => {
+                        // dispatch(setShowModal(false))
+                        closeModal();
+                    }}>Cancel
+                    </button>
                 </div>
             </div>
         </div>
