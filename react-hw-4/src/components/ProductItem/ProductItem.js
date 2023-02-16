@@ -2,21 +2,18 @@ import React, {useEffect, useState} from 'react';
 import styles from "./ProductItem.module.scss"
 import Modal from "../Modal/Modal";
 import {useDispatch, useSelector} from "react-redux";
-// import {setShowModal, setModalElement} from "../../store/ModalSlice";
+import {toggleModal, setModalId} from "../../store/ModalSlice";
 import {toggleFavorite} from "../../store/FavoritesSlice";
 
 const ProductItem = ({product, isCartPage}) => {
-    const [showModal, setShowModal] = useState(false);
     const [isFav, setIsFav] = useState(false);
 
     const favorites = useSelector(state => state.favorites.favorites);
-    // const showModal = useSelector(state => state.modal.showModal);
+
+    const showModal = useSelector(state => state.modal.showModal);
+    const modalId = useSelector(state => state.modal.modalId);
 
     const dispatch = useDispatch();
-
-    const toggleModal = () => {
-        setShowModal(!showModal)
-    }
 
     useEffect(() => {
         setIsFav(favorites.find((item) => item.id === product.id))
@@ -35,9 +32,8 @@ const ProductItem = ({product, isCartPage}) => {
                 {!isCartPage &&
                     <div>
                         <button className={styles.addToCart} onClick={() => {
-                            // dispatch(setShowModal(true));
-                            // dispatch(setModalElement(product));
-                            setShowModal(true)
+                            dispatch(toggleModal());
+                            dispatch(setModalId(product.id));
                         }}>
                             Add to cart
                         </button>
@@ -47,14 +43,13 @@ const ProductItem = ({product, isCartPage}) => {
                 }
                 {isCartPage &&
                     <button className={styles.deleteFromCart} onClick={() => {
-                        // dispatch(setShowModal(true));
-                        // dispatch(setModalElement(product));
-                        setShowModal(true)
+                        dispatch(toggleModal());
+                        dispatch(setModalId(product.id));
                     }}>X</button>
                 }
-
             </div>
-            {showModal && <Modal product={product} closeModal={toggleModal} addModal={!isCartPage}/>}
+            {showModal && modalId === product.id &&
+                <Modal product={product} addModal={!isCartPage}/>}
         </li>
     );
 };

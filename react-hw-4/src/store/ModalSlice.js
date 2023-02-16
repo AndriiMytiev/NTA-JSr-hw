@@ -4,17 +4,17 @@ const modalSlice = createSlice({
     name: 'modalSlice',
     initialState: {
         showModal: false,
-        modalElement: {}
+        modalId: 0,
     },
     reducers: {
-        setShowModal: (state, action) => {
-            state.showModal = action.payload;
+        toggleModal: (state) => {
+            state.showModal = !state.showModal;
         },
-        setModalElement: (state, action) => {
-            state.modalElement = action.payload
+        setModalId: (state, action) => {
+            state.modalId = action.payload
         }
     }
 })
 
 export default modalSlice.reducer;
-export const {setShowModal, setModalElement} = modalSlice.actions;
+export const {toggleModal, setModalId} = modalSlice.actions;
